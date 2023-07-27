@@ -1,0 +1,75 @@
+<div>
+    <mat-table [dataSource]="users" class="mat-elevation-z8">
+        <!-- UserId Column -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> User Id </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+      
+        <!-- username Column -->
+        <ng-container matColumnDef="username">
+          <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+        </ng-container>
+      
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="post">
+            <mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
+            <mat-cell *matCellDef="let element" (click)="loadPostByUserId(element.id)">
+                <button mat-icon-button>
+                    <mat-icon>article</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+      
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row
+        *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>
+
+<ng-template #postuserTml let-data class="dialog">
+    <h2 mat-dialog-title>Posts</h2>
+    <mat-dialog-content class="mat-typography">
+        <mat-table [dataSource]="posts" class="mat-elevation-z8">
+            <!-- PostId Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef> Post Id </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            </ng-container>
+    
+          
+            <!-- Title Column -->
+            <ng-container matColumnDef="title">
+              <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+            </ng-container>
+          
+            <!-- username Column -->
+            <ng-container matColumnDef="body">
+              <mat-header-cell *matHeaderCellDef> Body </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.body}} </mat-cell>
+            </ng-container>
+          
+          
+            <mat-header-row *matHeaderRowDef="displayedPostColumns"></mat-header-row>
+            <mat-row
+            *matRowDef="let row; columns: displayedPostColumns;"></mat-row>
+        </mat-table>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+</ng-template>
